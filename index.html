@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Docs</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="libs/favicon-32x32.png">
+    <script src="libs/jquery-3.3.1.min.js"></script>
+    <!--<script src="libs/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>-->
+    <script src="libs/showdown.min.js"></script>
+    <script src="libs/docdown.js"></script>
+    <script>
+        $(function () {
+            docdown.init({
+                title: 'Docdown',
+                version: '1.0',
+                date: '22.12.2020',
+                searchShowFragmentLength: 160, // how many characters are shown in search results
+                disableForced4SpacesIndentedSublists: true,
+                showdown: {
+					// showdown config
+                    literalMidWordUnderscores: true,
+                    tables: true
+                }
+            });
+            docdown.run([
+                'info.md',
+                'markdown.md',
+                'sample.md'
+            ]);
+        });
+    </script>
+    <link rel="stylesheet" href="libs/docdown.css" />
+</head>
+<body>
+
+    <div id="sidebar">
+
+        <div id="search">
+            <input type="text" name="search" /><button type="button" id="btnSearch">Search</button>
+        </div>
+
+        <h1 id="title"><a href="index.html"></a></h1>
+        <div id="buildinfo">
+            <span id="version"></span><span id="date"></span>
+        </div>
+
+        <ul id="toc"></ul>
+    </div>
+    <div id="main">
+        <div id="content"></div>
+    </div>
+</body>
+</html>
