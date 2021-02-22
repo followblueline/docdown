@@ -1,29 +1,33 @@
+// nodeJS basic server on port 3000
+// start with:
+// node app.js
+// and open with http://localhost:3000 or http://localhost:3000/index.html
+
+
 const http = require('http');
 const fs = require('fs').promises;
 const util = require('util');
 const port = 3000;
+const defaultFile = 'index.html';
 
 
 
 
 const requestListener = function (req, res) {
 
-  //console.log('req', req.url, req.method);//, req.headers, req.rawHeaders);
+    //console.log('req', req.url, req.method);//, req.headers, req.rawHeaders);
 
-  if (!req){
-      console.warn("no req");
-      res.writeHead(500);
-      res.end(err);
-      return;
-  }
+    if (!req){
+        console.warn("no req");
+        res.writeHead(500);
+        res.end(err);
+        return;
+    }
 
     var filepath = req.url.replace(/\//g, '\\');
-    // if (filepath.indexOf('page=') > -1)
-    //     filepath = filepath.substr(0, filepath.lastIndexOf('?page='));
-    // else if (filepath.indexOf('?t=') > -1)
-    //     filepath = filepath.substr(0, filepath.lastIndexOf('?t='));
     if (filepath.includes('?'))
     filepath = filepath.substr(0, filepath.indexOf('?'));
+    filepath = checkForDefaultFile(filepath);
 
     //console.log("loading " + __dirname + filepath);
     fs.readFile(__dirname + filepath)
@@ -65,3 +69,9 @@ const requestListener = function (req, res) {
 const server = http.createServer(requestListener);
 server.listen(port);
 console.log('Node.js web server at port '+port+' is running..');
+
+function checkForDefaultFile(url){
+    if (url == '' || url == '/' || url == '\\')
+       url = '/' + defaultFile;
+    return url;
+}
