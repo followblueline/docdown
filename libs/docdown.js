@@ -56,6 +56,9 @@ var docdown = (function () {
         refreshToc();
         var firstTitle = $(page.content).first(".heading").text();
         document.title = document.title + (firstTitle ? ' - ' + firstTitle : '');
+
+        mermaid.init();
+
         scrollPageToAnchor(window.location.hash);
     }
 

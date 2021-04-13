@@ -43,6 +43,9 @@ $(function () {
 });
 ```
 
+## Running
+
+Start locally with `node app.js`.
 
 ## License
 

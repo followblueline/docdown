@@ -162,6 +162,44 @@ if (a != b) {
 
 
 
+
+# Mermaid
+
+Docdown podržava text-to-diagram editor [Mermaid](https://mermaid-js.github.io/). Najlakše je [kreirati dijagram online](https://mermaid-js.github.io/mermaid-live-editor) 
+i kod staviti ovdje između code bloka:
+<pre class="code">
+&#96;&#96;&#96; mermaid
+[kod]
+&#96;&#96;&#96;
+</pre>
+
+
+``` mermaid
+graph TD;
+           A-->B;
+           A-->C;
+           B-->D;
+           C-->D;
+```
+
+
+``` mermaid
+%%  Rad sa izabranim svrhama
+%% zadrzavaju stari status
+%% aktivna: 2, istekla: 4, neaktivna: 3, novoodabrana: 1, potencijalna: 1
+stateDiagram-v2
+    state Sve_svrhe {
+        potencijalna --> istekla: deaktiviraj
+        istekla --> potencijalna: reaktiviraj
+
+        potencijalna --> null: otkaži novoodabranu
+        null --> potencijalna: novoodabrana
+
+    }
+```
+
+
+
 # Other resources
 
 - Online editors
