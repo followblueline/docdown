@@ -172,6 +172,9 @@ p {margin-top: 0; margin-bottom: 1rem; }
     white-space: pre
 }
 
+/* center mermaid graphs */
+#content code.mermaid {text-align: center;}
+
 
 #content table {
     background-color: transparent;
