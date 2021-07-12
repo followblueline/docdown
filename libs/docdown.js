@@ -55,7 +55,7 @@ var docdown = (function () {
         $(config.containerContent).html(page.content);
         refreshToc();
         var firstTitle = $(page.content).first(".heading").text();
-        document.title = document.title + (firstTitle ? ' - ' + firstTitle : '');
+        document.title = firstTitle || '';
 
         mermaid.init();
 
@@ -172,6 +172,9 @@ var docdown = (function () {
             elem = document.getElementById(anchor.replace("#", ""));
         if (!elem)
             elem = document.getElementById("content");
+
+        if (elem && (config.tocHeadings.includes(elem.tagName.toLowerCase())))
+            document.title += ' - ' + elem.textContent;
 
         elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
         
